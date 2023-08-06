@@ -1,0 +1,21 @@
+{
+  "manifest_version": 2,
+  "name": "LinkedIn Garbage Collector",
+  "description": "This extension hides reactions, comments, and ads from your LinkedIn feed",
+  "version": "1.0",
+  "permissions": [
+    "activeTab",
+    "http://*/*",
+    "https://*/*"
+  ],
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "content_scripts": [
+      {
+          "matches": ["*://*.linkedin.com/*"],
+          "js": ["contentScript.js"],
+          "run_at": "document_idle"
+      }
+  ]
+}
