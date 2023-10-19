@@ -20,7 +20,7 @@ function filterUnwantedPosts() {
   const spans = Array.from(document.querySelectorAll("span")).filter(
     (span) =>
       // span.childNodes[0].nodeValue represents the opening text of a span
-      span.childNodes[0].nodeValue &&
+      span.childNodes[0]?.nodeValue &&
       nonoWords.has(span.childNodes[0].nodeValue.trim().toLowerCase())
   );
   spans.forEach((span) => removeRootElement(span));
