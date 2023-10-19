@@ -1,5 +1,6 @@
 const nonoWordList = [
   'promoted',
+  'promoted by ',
   'likes this',
   'loves this',
   'commented on this',
