@@ -23,14 +23,14 @@ function findLoadButton() {
 
 const nonoWords = new Set([
   "promoted",
-  "likes",
-  "liked",
-  "loves",
-  "loved",
-  "commented",
-  "finds",
-  "celebrates",
-  "supports",
+  "promoted by",
+  "likes this",
+  "loves this",
+  "commented on this",
+  "finds this funny",
+  "celebrates this",
+  "supports this",
+  "finds this insightful",
 ]);
 
 const nonoRootSelectorList = [
@@ -72,3 +72,4 @@ const observer = new MutationObserver(() => {
 });
 observer.observe(document.body, { childList: true, subtree: true });
 filterUnwantedPosts();
+
