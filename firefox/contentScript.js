@@ -42,12 +42,22 @@ const nonoRootParentSelector = "div.relative";
 
 function filterUnwantedPosts() {
   const spans = Array.from(document.querySelectorAll("span")).filter(
-    (span) =>
-      // span.childNodes[0].nodeValue represents the opening text of a span
-      span.childNodes[0]?.nodeValue &&
-      nonoWords.has(span.childNodes[0].nodeValue.trim().toLowerCase())
+    (span) => {
+      const directTextContent = getDirectTextContent(span);
+      return directTextContent && nonoWords.has(directTextContent);
+    }
   );
   spans.forEach((span) => removeRootElement(span));
+}
+
+function getDirectTextContent(span) {
+  let text = '';
+  for (const node of span.childNodes) {
+    if (node.nodeType === Node.TEXT_NODE) {
+      text += node.nodeValue.trim().toLowerCase();
+    }
+  }
+  return text;
 }
 
 function removeRootElement(elem) {
@@ -72,3 +82,4 @@ const observer = new MutationObserver(() => {
 });
 observer.observe(document.body, { childList: true, subtree: true });
 filterUnwantedPosts();
+
